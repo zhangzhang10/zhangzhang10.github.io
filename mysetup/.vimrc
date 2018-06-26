@@ -93,12 +93,12 @@ if &diff
 endif
 
 " tab navigation like firefox 
-:nmap <C-h> :tabprevious<cr>
-:nmap <C-l> :tabnext<cr>
-:map <C-h> :tabprevious<cr>
-:map <C-l> :tabnext<cr>
-:imap <C-h> <ESC>:tabprevious<cr>i
-:imap <C-l> <ESC>:tabnext<cr>i
+:nmap <leader>H :tabprevious<cr>
+:nmap <leader>L :tabnext<cr>
+:map <leader>H :tabprevious<cr>
+:map <leader>L :tabnext<cr>
+:imap <leader>H <ESC>:tabprevious<cr>i
+:imap <leader>L <ESC>:tabnext<cr>i
 
 " buffer navigation 
 nmap <C-j> :bp!<CR>
