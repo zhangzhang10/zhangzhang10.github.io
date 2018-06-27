@@ -73,7 +73,7 @@ set ts=8
 set sw=4
 set sts=4
 set tw=80
-set colorcolumn=110
+set colorcolumn=85
 hi ColorColumn term=reverse ctermbg=8 guibg=LightRed
 "set listchars=tab:>."
 "set list"
