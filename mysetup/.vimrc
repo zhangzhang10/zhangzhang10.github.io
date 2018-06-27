@@ -185,5 +185,5 @@ let g:airline_skip_empty_sections=1
 let g:airline_theme='molokai'
 
 " Fix highlight search
-hi Search term=reverse cterm=reverse  ctermbg=none
-hi Visual term=reverse cterm=reverse  ctermbg=red
+hi Search term=reverse cterm=reverse ctermbg=none
+hi Visual term=reverse ctermbg=8
