@@ -26,6 +26,9 @@ Plugin 'majutsushi/tagbar'
 " rtags
 "Plugin 'lyuts/vim-rtags'
 
+" python-mode
+Plugin 'python-mode/python-mode'
+
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 
@@ -182,7 +185,7 @@ set t_Co=256
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_skip_empty_sections=1
-let g:airline_theme='molokai'
+let g:airline_theme='light'
 
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
