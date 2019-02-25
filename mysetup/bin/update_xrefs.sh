@@ -15,7 +15,8 @@ touch cscope.files
 
 for arg in "$@"
 do
-    find $arg -regex '.*\.\(h\|hpp\|hxx\|hh\|H\|c\|C\|cc\|CC\|cpp\|cxx\)' \
+    find $arg -regex \
+	'.*\.\(h\|hpp\|hxx\|hh\|H\|c\|C\|cc\|CC\|cpp\|cxx\|ipp\|ixx\)' \
         -exec readlink -f '{}' \;  >> cscope.files
 done
 cscope -Rbkq
