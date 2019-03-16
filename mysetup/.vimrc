@@ -197,6 +197,8 @@ let g:pymode_motion = 1
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_rope = 1
+let g:pymode_rope_completion = 1
+let g:pymode_rope_complete_on_dot = 0
 
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
