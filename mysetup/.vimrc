@@ -77,7 +77,7 @@ set sw=4
 set sts=4
 set tw=80
 set colorcolumn=85
-hi ColorColumn term=reverse ctermbg=8 guibg=LightRed
+hi ColorColumn term=reverse ctermbg=23 guibg=LightRed
 "set listchars=tab:>."
 "set list"
 set et
@@ -186,6 +186,17 @@ set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_skip_empty_sections=1
 let g:airline_theme='light'
+
+" pymode
+let g:pymode = 1
+let g:pymode = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+let g:pymode_indent = 1
+let g:pymode_motion = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_rope = 1
 
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
