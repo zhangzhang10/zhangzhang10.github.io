@@ -189,7 +189,6 @@ let g:airline_theme='light'
 
 " pymode
 let g:pymode = 1
-let g:pymode = 1
 let g:pymode_trim_whitespaces = 1
 let g:pymode_options = 1
 let g:pymode_indent = 1
