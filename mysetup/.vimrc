@@ -23,8 +23,8 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'taglist.vim'
 Plugin 'majutsushi/tagbar'
 
-" rtags
-"Plugin 'lyuts/vim-rtags'
+" fugitive
+Plugin 'tpope/vim-fugitive'
 
 " python-mode
 Plugin 'python-mode/python-mode'
@@ -51,7 +51,7 @@ filetype plugin indent on    " required
 
 " better highlight for Folded and FoldColumn
 highlight Folded term=standout ctermfg=0 ctermbg=3 
-highlight FoldColumn term=standout ctermfg=0 ctermbg=7 
+highlight FoldColumn term=standout ctermfg=0 ctermbg=7
 
 " powerline
 "set rtp+=/home/zzhan68/miniconda2/lib/python2.7/site-packages/powerline/bindings/vim/
