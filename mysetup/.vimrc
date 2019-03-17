@@ -199,6 +199,10 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 0
 
+" fugitive
+autocmd BufReadPost fugitive://* set bufhidden=delete
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
-hi Visual term=reverse ctermbg=8
+hi Visual term=reverse ctermbg=23
