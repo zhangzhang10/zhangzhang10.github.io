@@ -1,0 +1,10 @@
+{
+    "initializationOptions": {
+        "cache": {
+            "directory": "/tmp/ccls"
+        },
+        "clang": {
+            "extraArgs": ["--gcc-toolchain=/usr"]
+        }
+    }
+}

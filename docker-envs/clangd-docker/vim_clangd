@@ -1,2 +1,0 @@
-#! /bin/sh
-docker run -it --rm -v=$(pwd):/workspace -v=$HOME/.vim:/root/.vim clangd_vim:latest 

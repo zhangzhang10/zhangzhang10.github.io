@@ -43,6 +43,64 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " netrw enhancement
 Plug '~/.vim/pack/tpope/start/vim-vinegar'
 
+"LanguageClient-neovim
+if v:version >= 800
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+    " ccls-lcn
+    let g:LanguageClient_serverCommands = {
+        \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+        \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+        \ 'cxx': ['ccls', '--log-file=/tmp/cc.log'],
+        \ 'cuda': ['ccls', '--log-file=/tmp/cc.log'],
+        \ 'objc': ['ccls', '--log-file=/tmp/cc.log'],
+        \ }
+    let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = '/root/settings.json'
+    let g:LanguageClient_selectionUI = 'quickfix'
+    " https://github.com/autozimu/LanguageClient-neovim/issues/379 LSP snippet is not supported
+    let g:LanguageClient_hasSnippetSupport = 0
+    " we don't have fzf
+    let g:LanguageClient_fzfContextMenu = 0
+    let g:LanguageClient_diagnosticsEnable = 0
+
+    " lcn
+    nn <leader>rG :call LanguageClient#textDocument_definition()<cr>
+    nn <leader>rR :call LanguageClient#textDocument_references({'includeDeclaration': v:false})<cr>
+    nn <leader>rK :call LanguageClient#textDocument_hover()<cr>
+    nn <leader>rT :call LanguageClient#textDocument_typeDefinition()<cr>
+
+    nn <leader>xh :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
+    nn <leader>xj :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
+    nn <leader>xk :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
+    nn <leader>xl :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+
+    " bases
+    nn <leader>rB :call LanguageClient#findLocations({'method':'$ccls/inheritance'})<cr>
+    " derived
+    nn <leader>rD :call LanguageClient#findLocations({'method':'$ccls/inheritance','derived':v:true})<cr>
+    " caller
+    nn <leader>rd :call LanguageClient#findLocations({'method':'$ccls/call'})<cr>
+    " callee
+    nn <leader>rc :call LanguageClient#findLocations({'method':'$ccls/call','callee':v:true})<cr>
+
+    " $ccls/member
+    " nested classes / types in a namespace
+    nn <leader>rn :call LanguageClient#findLocations({'method':'$ccls/member','kind':2})<cr>
+    " member functions / functions in a namespace
+    nn <leader>rm :call LanguageClient#findLocations({'method':'$ccls/member','kind':3})<cr>
+    " member variables / variables in a namespace
+    nn <leader>rv :call LanguageClient#findLocations({'method':'$ccls/member'})<cr>
+endif
+
+" vim-rtags: load only when tags have been generated
+if !empty(glob("~/.cache/rtags/*"))
+    Plug 'lyuts/vim-rtags'
+    let g:rtagsUseLocationList = 0
+endif
+
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -52,7 +110,7 @@ call plug#end()            " required
 
 " better highlight for Folded and FoldColumn
 highlight Folded term=standout ctermfg=0 ctermbg=3 
-highlight FoldColumn term=standout ctermfg=0 ctermbg=7
+highlight FoldColumn term=standout ctermfg=0 ctermbg=7 
 
 " powerline
 "set rtp+=/home/zzhan68/miniconda2/lib/python2.7/site-packages/powerline/bindings/vim/
@@ -79,7 +137,7 @@ set sw=4
 set sts=4
 set tw=80
 set colorcolumn=85
-hi ColorColumn term=reverse ctermbg=23 guibg=LightRed
+hi ColorColumn term=reverse ctermbg=8 guibg=LightRed
 "set listchars=tab:>."
 "set list"
 set et
@@ -98,7 +156,7 @@ if &diff
     colorscheme mydiffscheme
 endif
 
-" no cul in quickfix
+" no cul in quickfix 
 autocmd BufReadPost quickfix set nocul
 
 " tab navigation like firefox 
@@ -119,7 +177,7 @@ nmap <C-k> :bn!<CR>
 " Netrw
 :let g:netrw_altv=1
 
-" cscope or gutentags-cscope
+" gutentags-cscope
 if executable('gtags-cscope') && executable('gtags')
         set csprg=/usr/local/bin/gtags-cscope
         set statusline+=%{gutentags#statusline()}
@@ -127,7 +185,7 @@ if executable('gtags-cscope') && executable('gtags')
         let g:gutentags_ctags_tagfile = '.tags'
         let g:gutentags_modules = ['ctags', 'gtags_cscope']
         let g:gutentags_cache_dir = expand('~/.cache/tags')
-        let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+        let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
         let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
         let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
         let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
@@ -136,16 +194,16 @@ else
         set csprg=/usr/bin/cscope
         set csto=0
         set cst
-	noremap <silent> <leader>cs :cs find s <C-R><C-W><cr>
-	noremap <silent> <leader>cg :cs find g <C-R><C-W><cr>
-	noremap <silent> <leader>cc :cs find c <C-R><C-W><cr>
-	noremap <silent> <leader>ct :cs find t <C-R><C-W><cr>
-	noremap <silent> <leader>ce :cs find e <C-R><C-W><cr>
-	noremap <silent> <leader>cf :cs find f <C-R>=expand("<cfile>")<cr><cr>
-	noremap <silent> <leader>ci :cs find i <C-R>=expand("<cfile>")<cr><cr>
-	noremap <silent> <leader>cd :cs find d <C-R><C-W><cr>
-	noremap <silent> <leader>ca :cs find a <C-R><C-W><cr>
-	noremap <silent> <leader>ck :cs kill<cr>
+        noremap <silent> <leader>cs :cs find s <C-R><C-W><cr>
+        noremap <silent> <leader>cg :cs find g <C-R><C-W><cr>
+        noremap <silent> <leader>cc :cs find c <C-R><C-W><cr>
+        noremap <silent> <leader>ct :cs find t <C-R><C-W><cr>
+        noremap <silent> <leader>ce :cs find e <C-R><C-W><cr>
+        noremap <silent> <leader>cf :cs find f <C-R>=expand("<cfile>")<cr><cr>
+        noremap <silent> <leader>ci :cs find i <C-R>=expand("<cfile>")<cr><cr>
+        noremap <silent> <leader>cd :cs find d <C-R><C-W><cr>
+        noremap <silent> <leader>ca :cs find a <C-R><C-W><cr>
+        noremap <silent> <leader>ck :cs kill<cr>
 endif
 
 " airline
@@ -153,7 +211,7 @@ set t_Co=256
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_skip_empty_sections=1
-let g:airline_theme='light'
+let g:airline_theme='molokai'
 
 " pymode
 let g:pymode = 1
@@ -165,11 +223,11 @@ let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_completion_on_dot = 0
 
 " fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline+=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
