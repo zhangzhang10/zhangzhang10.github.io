@@ -15,7 +15,6 @@ Plug 'skywind3000/gutentags_plus', v:version >= 800 ? {} : { 'on' : [] }
 " LeaderF
 if v:version >= 800
     Plug 'Yggdroot/LeaderF'
-    let g:Lf_ShortcutF = '<C-P>'
     let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
     let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
     let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -28,7 +27,9 @@ if v:version >= 800
     " search functions in the current file
     noremap <F9> :LeaderfFunction!<CR>
     " search MRU
-    noremap <F10> :LeaderfMru<CR>
+    noremap <F10> :LeaderfMru!<CR>
+    " search <cword>
+    noremap <leader>rt :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 endif
 
 " fugitive

@@ -39,7 +39,10 @@ RUN \
     make -j4 && make install && \
     cd ../.. && rm -rf rtags && \
     # folder for powerline symbols
-    mkdir -p /root/.local/share/fonts
+    mkdir -p /root/.local/share/fonts && \
+    # ripgrep
+    wget https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep-0.10.0-x86_64-unknown-linux-musl.tar.gz && \
+    tar -zxvf ripgrep*.tar.gz && ln -s /ripgrep*/rg /bin/rg && rm -f ripgrep*.tar.gz 
 
 COPY vimrc /root/.vimrc
 COPY settings.json /root/
