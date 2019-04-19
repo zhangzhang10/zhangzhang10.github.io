@@ -10,7 +10,7 @@ RUN \
     apt-get update && apt-get install -y \
        build-essential python3 git vim tmux cmake zlib1g-dev libncurses-dev clang-7 \
        libclang-7-dev autoconf pkg-config bash-completion unzip wget bison flex \
-       gperf libtool-bin libncurses-dev texinfo fonts-powerline && \
+       gperf libtool-bin libncurses-dev texinfo fonts-powerline locales && \
     # build/install/cleanup universal-ctags
     git clone https://github.com/universal-ctags/ctags.git && \
     cd ctags && \
@@ -43,6 +43,11 @@ RUN \
     # ripgrep
     wget https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep-0.10.0-x86_64-unknown-linux-musl.tar.gz && \
     tar -zxvf ripgrep*.tar.gz && ln -s /ripgrep*/rg /bin/rg && rm -f ripgrep*.tar.gz 
+
+RUN sed -i -e 's/# \(en_US\.UTF-8 .*\)/\1/' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 COPY vimrc /root/.vimrc
 COPY tmux.conf /root/.tmux.conf
