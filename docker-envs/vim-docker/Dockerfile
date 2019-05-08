@@ -8,7 +8,7 @@ RUN \
     echo 'Acquire::https::proxy "http://proxy-chain.intel.com:912";' >> /etc/apt/apt.conf && \
     # required packages
     apt-get update && apt-get install -y \
-       build-essential python3 git vim tmux cmake zlib1g-dev libncurses-dev clang-7 \
+       build-essential python3 git vim tmux cmake zlib1g-dev clang-7 \
        libclang-7-dev autoconf pkg-config bash-completion unzip wget bison flex \
        gperf libtool-bin libncurses-dev texinfo fonts-powerline locales && \
     # build/install/cleanup universal-ctags
