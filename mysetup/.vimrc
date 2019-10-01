@@ -91,6 +91,7 @@ set incsearch
 set hlsearch
 set splitright
 set tags=./.tags;,.tags
+set switchbuf+=usetab,newtab
 
 " colorscheme molokai
 set guifont=Courier:h12:cANSI
