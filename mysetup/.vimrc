@@ -91,7 +91,7 @@ set incsearch
 set hlsearch
 set splitright
 set tags=./.tags;,.tags
-set switchbuf+=usetab,newtab
+"set switchbuf+=usetab,newtab
 
 " colorscheme molokai
 set guifont=Courier:h12:cANSI
@@ -173,6 +173,9 @@ let g:pymode_rope_complete_on_dot = 0
 " fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" cd to current file location
+autocmd BufEnter * silent! lcd %:p:h
 
 " Fix highlight search
 hi Search term=reverse cterm=reverse ctermbg=none
