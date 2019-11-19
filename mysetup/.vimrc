@@ -156,7 +156,9 @@ set t_Co=256
 set laststatus=2
 let g:airline_powerline_fonts=1
 let g:airline_skip_empty_sections=1
-let g:airline_theme='light'
+let g:airline#extensions#gutentags#enabled=1
+let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline_theme='molokai'
 
 " pymode
 let g:pymode = 1
