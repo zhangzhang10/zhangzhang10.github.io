@@ -96,9 +96,8 @@ set tags=./.tags;,.tags
 " colorscheme molokai
 set guifont=Courier:h12:cANSI
 
-if &diff
-    colorscheme mydiffscheme
-endif
+" fix diff colors
+autocmd FilterWritePre * if &diff | colorscheme mydiffscheme | endif
 
 " no cul in quickfix
 autocmd BufReadPost quickfix set nocul
