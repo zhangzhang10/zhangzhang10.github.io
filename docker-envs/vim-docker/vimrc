@@ -74,10 +74,10 @@ if v:version >= 800
     nn <leader>rK :call LanguageClient#textDocument_hover()<cr>
     nn <leader>rT :call LanguageClient#textDocument_typeDefinition()<cr>
 
-    nn <leader>xh :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
-    nn <leader>xj :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
-    nn <leader>xk :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
-    nn <leader>xl :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+    nn <leader>xh :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'U'})<cr>
+    nn <leader>xj :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'R'})<cr>
+    nn <leader>xk :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'L'})<cr>
+    nn <leader>xl :call LanguageClient#findLocations({'method':'$ccls/navigate','direction':'D'})<cr>
 
     " bases
     nn <leader>rB :call LanguageClient#findLocations({'method':'$ccls/inheritance'})<cr>
